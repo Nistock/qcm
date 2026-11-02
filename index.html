@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QCM Révisions</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>QCM Révisions</h1>
+    <span id="quiz-meta" class="quiz-meta"></span>
+  </header>
+
+  <main id="app">
+    <!-- Écran d'accueil / import -->
+    <section id="ecran-accueil" class="card accueil">
+      <h2>Charger un QCM</h2>
+      <p class="muted">Glisse un fichier <code>.yaml</code> / <code>.yml</code> ici, ou clique pour choisir un fichier.</p>
+      <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Déposer un fichier YAML">
+        <p>Dépose ton fichier YAML ici</p>
+        <p class="muted">ou</p>
+        <button id="btn-choisir" class="btn">Choisir un fichier</button>
+        <input type="file" id="file-input" accept=".yaml,.yml,.txt" hidden>
+      </div>
+      <p class="muted">Pas de fichier sous la main ? <button id="btn-exemple" class="btn lien">Charger l'exemple intégré</button></p>
+      <div id="erreurs-import" class="erreurs" hidden></div>
+
+      <hr class="separateur">
+
+      <h2>Dossier de QCM</h2>
+      <p class="muted">Charge les QCM présents dans ton dossier (ils y restent) ou déposes-en un nouveau.</p>
+      <div class="actions">
+        <button id="btn-dossier" class="btn secondaire">Choisir le dossier des QCM…</button>
+        <button id="btn-deposer" class="btn" hidden>Déposer un QCM dans ce dossier</button>
+        <input type="file" id="file-depot" accept=".yaml,.yml" hidden>
+      </div>
+      <p id="info-dossier" class="muted"></p>
+      <ul id="liste-qcm" class="liste-qcm"></ul>
+    </section>
+  </main>
+
+  <footer class="pied muted">
+    Fichier traité localement dans ton navigateur — rien n'est envoyé sur le réseau.
+  </footer>
+
+  <script src="vendor/js-yaml.min.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/exemple.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

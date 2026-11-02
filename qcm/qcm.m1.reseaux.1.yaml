@@ -1,0 +1,567 @@
+# QCM M1IF05 Réseaux — CM1 + CM2 (généré depuis CM1.pdf et CM2.pdf)
+titre: M1IF05 Réseaux — CM1 & CM2
+matiere: Réseaux (Master 1, UCBL)
+melanger_questions: true
+melanger_options: true
+
+questions:
+  - id: CM1-01
+    type: qcm
+    enonce: "En commutation de paquets, lorsqu'un paquet est émis sur un lien, il :"
+    options:
+      - { texte: "prend toute la capacité du lien pendant son émission", exacte: true }
+      - { texte: "réserve une fraction fixe et permanente de la capacité du lien" }
+      - { texte: "partage la capacité du lien à parts égales avec les autres paquets présents" }
+      - { texte: "est émis sans jamais occuper de capacité du lien" }
+    justification: "D'après CM1.pdf p. 18 : lors de son émission, un paquet prend toute la capacité du lien ; aucune réservation n'est faite."
+    chapitre: Introduction — commutation de paquets
+    niveau: 1
+    tags: [commutation-paquets]
+
+  - id: CM1-02
+    type: qcm
+    enonce: "Quel type de service Internet offre-t-il aux applications ?"
+    options:
+      - { texte: "Un service « best effort », sans aucune garantie", exacte: true }
+      - { texte: "Une garantie de débit minimal contractuel" }
+      - { texte: "Une garantie de délai de bout-en-bout maximal" }
+      - { texte: "Une garantie d'absence totale de pertes" }
+    justification: "D'après CM1.pdf p. 18 : Internet fait de son mieux (« best effort ») mais n'offre aucune garantie de service."
+    chapitre: Introduction — commutation de paquets
+    niveau: 1
+    tags: [best-effort]
+
+  - id: CM1-03
+    type: qcm
+    enonce: "Un routeur fonctionne en mode « store-and-forward ». Cela signifie que :"
+    options:
+      - { texte: "un paquet doit être entièrement reçu avant d'être réémis vers le nœud suivant", exacte: true }
+      - { texte: "le paquet est réémis dès la réception de son premier bit" }
+      - { texte: "le paquet est dupliqué à chaque port de sortie" }
+      - { texte: "le paquet n'est jamais stocké en mémoire" }
+    justification: "D'après CM1.pdf p. 20 : en réception, un paquet doit être entièrement reçu avant d'être réémis au nœud suivant."
+    chapitre: Introduction — commutation de paquets
+    niveau: 1
+    tags: [store-and-forward, routeur]
+
+  - id: CM1-04
+    type: qcm
+    enonce: "Un message de L = 7,5 Mbits traverse 3 liens de capacité C = 1,5 Mb/s. Sans fragmentation, le temps de transfert est :"
+    options:
+      - { texte: "3L/C = 15 s", exacte: true }
+      - { texte: "L/C = 5 s" }
+      - { texte: "3C/L = 0,6 s" }
+      - { texte: "L/(3C) = 1,67 s" }
+    justification: "D'après CM1.pdf p. 21 : sans fragmentation, Ttransfert = 3L/C = 3 × 7,5 / 1,5 = 15 s (hypothèse : sans congestion)."
+    chapitre: Introduction — performances
+    niveau: 2
+    tags: [fragmentation, calcul]
+
+  - id: CM1-05
+    type: vrai_faux
+    reponse: false
+    enonce: "La fragmentation en paquets améliore toujours le temps de transfert d'un message."
+    justification: "D'après CM1.pdf p. 21 : la fragmentation peut accélérer le transfert (effet « pipeline », ex. 5 fragments : 7L/5C = 7 s), mais ce n'est pas toujours le cas."
+    chapitre: Introduction — performances
+    niveau: 2
+    tags: [fragmentation, pipeline]
+
+  - id: CM1-06
+    type: qcm
+    enonce: "Le délai d'émission (transmission) d'un paquet de L bits sur un lien de capacité C vaut :"
+    options:
+      - { texte: "L/C", exacte: true }
+      - { texte: "C/L" }
+      - { texte: "d/v (longueur du lien / vitesse de propagation)" }
+      - { texte: "L × C" }
+    justification: "D'après CM1.pdf p. 25 : le délai d'émission vaut L/C, avec L la taille du paquet et C la capacité du lien (hypothèse couche Liaison parfaite). Le délai de propagation, lui, vaut d/v."
+    chapitre: Délais et pertes
+    niveau: 1
+    tags: [delais, emission]
+
+  - id: CM1-07
+    type: qcm
+    enonce: "Le délai de propagation d'un bit sur un lien de longueur d et de vitesse de propagation v vaut :"
+    options:
+      - { texte: "d/v", exacte: true }
+      - { texte: "v/d" }
+      - { texte: "L/C" }
+      - { texte: "d × v" }
+    justification: "D'après CM1.pdf p. 25 : le délai de propagation vaut d/v (d = longueur du lien, v = vitesse de propagation)."
+    chapitre: Délais et pertes
+    niveau: 1
+    tags: [delais, propagation]
+
+  - id: CM1-08
+    type: qcm
+    enonce: "Quel est l'ordre de grandeur du délai de traitement d'un paquet dans un routeur ?"
+    options:
+      - { texte: "la nanoseconde (~ns)", exacte: true }
+      - { texte: "la microseconde (~µs)" }
+      - { texte: "la milliseconde (~ms)" }
+      - { texte: "la seconde (~s)" }
+    justification: "D'après CM1.pdf p. 25 : le délai de traitement (lecture d'en-tête, contrôle d'erreurs, choix de l'interface de sortie) est de l'ordre de la nanoseconde."
+    chapitre: Délais et pertes
+    niveau: 1
+    tags: [delais, traitement]
+
+  - id: CM1-09
+    type: qcm_multiple
+    enonce: "Le RTT (Round Trip Time) comprend lesquels de ces temps ? (plusieurs réponses)"
+    options:
+      - { texte: "Le temps de traitement", exacte: true }
+      - { texte: "Le temps d'attente", exacte: true }
+      - { texte: "Le temps d'émission", exacte: true }
+      - { texte: "Le temps de propagation", exacte: true }
+    justification: "D'après CM1.pdf p. 27 : le RTT comprend les temps de traitement, d'attente, d'émission et de propagation ; il se mesure simplement avec la commande ping."
+    chapitre: Délais et pertes
+    niveau: 1
+    tags: [rtt, ping]
+
+  - id: CM1-10
+    type: qcm
+    enonce: "Combien de couches comporte la pile protocolaire d'Internet (modèle Internet) ?"
+    options:
+      - { texte: "5 couches (7 dans le modèle OSI)", exacte: true }
+      - { texte: "7 couches" }
+      - { texte: "4 couches" }
+      - { texte: "3 couches" }
+    justification: "D'après CM1.pdf p. 29 : la couche protocolaire Internet comporte 5 couches (7 dans le modèle OSI)."
+    chapitre: Architecture en couches
+    niveau: 1
+    tags: [architecture, couches]
+
+  - id: CM1-11
+    type: qcm_multiple
+    enonce: "Dans l'architecture en couches d'Internet, quelles couches sont dites « de proche-en-proche » ? (plusieurs réponses)"
+    options:
+      - { texte: "La couche Physique (1)", exacte: true }
+      - { texte: "La couche Liaison (2)", exacte: true }
+      - { texte: "La couche Réseaux (3)", exacte: true }
+      - { texte: "La couche Transport (4)" }
+      - { texte: "La couche Application (5)" }
+    justification: "D'après CM1.pdf p. 31 : les couches de proche-en-proche sont les couches 1, 2 et 3 ; les couches 4 et 5 sont de bout-en-bout."
+    chapitre: Architecture en couches
+    niveau: 1
+    tags: [architecture, proche-en-proche]
+
+  - id: CM1-12
+    type: qcm_multiple
+    enonce: "Dans une architecture client-serveur, quelles propriétés caractérisent le serveur ? (plusieurs réponses)"
+    options:
+      - { texte: "Il est toujours actif", exacte: true }
+      - { texte: "Il possède une adresse IP permanente", exacte: true }
+      - { texte: "Les clients communiquent directement entre eux" }
+      - { texte: "Il a une activité intermittente" }
+    justification: "D'après CM1.pdf p. 35 : le serveur est toujours actif, a une adresse IP permanente (éventuellement un cluster/data center) ; les clients ont une activité intermittente, une IP possiblement dynamique, et ne communiquent pas directement entre eux."
+    chapitre: Couche application
+    niveau: 1
+    tags: [client-serveur]
+
+  - id: CM1-13
+    type: qcm
+    enonce: "Pour identifier un processus s'exécutant sur un nœud distant, il faut :"
+    options:
+      - { texte: "l'adresse IP du nœud ET le numéro de port du processus", exacte: true }
+      - { texte: "uniquement l'adresse IP du nœud" }
+      - { texte: "uniquement le numéro de port" }
+      - { texte: "l'adresse MAC de l'interface réseau" }
+    justification: "D'après CM1.pdf p. 38 : l'adresse IP seule ne suffit pas (plusieurs processus peuvent tourner sur un même nœud) ; l'identifiant comprend l'adresse IP et le numéro de port (ex. HTTP : 80, e-mail : 25)."
+    chapitre: Couche application
+    niveau: 1
+    tags: [socket, port, adressage]
+
+  - id: CM1-14
+    type: qcm_multiple
+    enonce: "Quels numéros de port sont conventionnellement associés à HTTP et HTTPS ? (plusieurs réponses)"
+    options:
+      - { texte: "HTTP : 80 (TCP)", exacte: true }
+      - { texte: "HTTPS : 443 (TCP)", exacte: true }
+      - { texte: "HTTP : 443 (TCP)" }
+      - { texte: "HTTPS : 80 (TCP)" }
+    justification: "D'après CM1.pdf p. 53 : HTTP = 80 (TCP) et HTTPS = 443 (TCP) ; DNS = 53, SMTP = 25, SSH = 22, DHCP = 67/68 (UDP)."
+    chapitre: Couche transport
+    niveau: 1
+    tags: [ports, http]
+
+  - id: CM1-15
+    type: qcm_multiple
+    enonce: "Quelles informations un terminal obtient-il typiquement d'un serveur DHCP ? (plusieurs réponses)"
+    options:
+      - { texte: "Son adresse IP", exacte: true }
+      - { texte: "L'adresse IP de la passerelle", exacte: true }
+      - { texte: "L'adresse IP du serveur DNS local", exacte: true }
+      - { texte: "L'adresse MAC du FAI" }
+    justification: "D'après CM1.pdf p. 41 : le serveur DHCP fournit l'adresse IP, l'adresse IP de la passerelle et l'adresse IP du serveur DNS local."
+    chapitre: Couche application
+    niveau: 1
+    tags: [dhcp]
+
+  - id: CM1-16
+    type: qcm_multiple
+    enonce: "Quels services sont communs à UDP et TCP ? (plusieurs réponses)"
+    options:
+      - { texte: "Le multiplexage / démultiplexage", exacte: true }
+      - { texte: "La détection d'erreurs", exacte: true }
+      - { texte: "La livraison fiable et ordonnée" }
+      - { texte: "Le contrôle de congestion" }
+    justification: "D'après CM1.pdf p. 45 : UDP et TCP offrent tous deux le multiplexage et la détection d'erreurs ; la livraison fiable/ordonnée, le contrôle de congestion et le contrôle de flux sont exclusifs à TCP. Aucun ne garantit de QoS."
+    chapitre: Couche transport
+    niveau: 1
+    tags: [udp, tcp, services]
+
+  - id: CM1-17
+    type: qcm
+    enonce: "Quelle proportion du trafic sur Internet TCP représente-t-il toujours ?"
+    options:
+      - { texte: "entre 90 et 95 %", exacte: true }
+      - { texte: "entre 50 et 60 %" }
+      - { texte: "moins de 10 %" }
+      - { texte: "100 %" }
+    justification: "D'après CM1.pdf p. 45 : TCP représente toujours entre 90 et 95 % du trafic sur Internet."
+    chapitre: Couche transport
+    niveau: 1
+    tags: [tcp, trafic]
+
+  - id: CM1-18
+    type: qcm
+    enonce: "Une socket UDP est identifiée par :"
+    options:
+      - { texte: "un doublet (@IP destination, n° de port destination)", exacte: true }
+      - { texte: "un quadruplet (@IP source, port source, @IP destination, port destination)" }
+      - { texte: "uniquement le n° de port source" }
+      - { texte: "uniquement l'adresse MAC" }
+    justification: "D'après CM1.pdf p. 49 : une socket UDP est identifiée par le doublet (@IP Dst, #port Dst) ; c'est le quadruplet qui identifie une socket TCP (p. 51). Plusieurs nœuds peuvent émettre vers une même socket UDP."
+    chapitre: Couche transport
+    niveau: 2
+    tags: [udp, socket, multiplexage]
+
+  - id: CM1-19
+    type: qcm
+    enonce: "Une socket TCP est identifiée par :"
+    options:
+      - { texte: "un quadruplet (@IP source, n° port source, @IP destination, n° port destination)", exacte: true }
+      - { texte: "un doublet (@IP destination, n° port destination)" }
+      - { texte: "le seul n° de port destination" }
+      - { texte: "l'adresse IP du serveur uniquement" }
+    justification: "D'après CM1.pdf p. 51 : une socket TCP est identifiée par le quadruplet (@IP Src, #port Src, @IP Dst, #port Dst) ; chaque nœud émetteur ouvre ainsi une socket différente sur le serveur."
+    chapitre: Couche transport
+    niveau: 2
+    tags: [tcp, socket, multiplexage]
+
+  - id: CM1-20
+    type: qcm
+    enonce: "Quelle est la taille de l'en-tête UDP (hors données) ?"
+    options:
+      - { texte: "8 octets (contre 20 pour TCP)", exacte: true }
+      - { texte: "20 octets" }
+      - { texte: "40 octets" }
+      - { texte: "4 octets" }
+    justification: "D'après CM1.pdf p. 55 : UDP est léger, avec un faible volume d'en-têtes : 8 octets vs 20 pour TCP."
+    chapitre: Couche transport
+    niveau: 1
+    tags: [udp, en-tete]
+
+  - id: CM1-21
+    type: vrai_faux
+    reponse: false
+    enonce: "UDP établit une connexion entre émetteur et récepteur avant tout échange de données."
+    justification: "D'après CM1.pdf p. 55 : UDP est sans connexion — aucun échange initial entre les couches Transport de l'émetteur et du récepteur. C'est l'un de ses avantages (plus rapide, plus simple)."
+    chapitre: Couche transport
+    niveau: 1
+    tags: [udp, sans-connexion]
+
+  - id: CM1-22
+    type: qcm
+    enonce: "Dans rdt2.0 (canal avec erreurs binaires), à la réception d'un NAK, l'émetteur :"
+    options:
+      - { texte: "retransmet le paquet erroné", exacte: true }
+      - { texte: "supprime le paquet définitivement" }
+      - { texte: "envoie un ACK à son tour" }
+      - { texte: "attend le prochain paquet de données" }
+    justification: "D'après CM1.pdf p. 64 : rdt2.0 utilise ACK/NAK et retransmet les paquets erronés à la réception d'un NAK, selon le protocole « send and wait » (l'émetteur émet un paquet puis attend ACK/NAK)."
+    chapitre: Transfert fiable (rdt)
+    niveau: 2
+    tags: [rdt2.0, nak, retransmission]
+
+  - id: CM2-01
+    type: qcm
+    enonce: "Dans rdt2.1, pour un protocole « send and wait », combien de bits suffisent pour coder le numéro de séquence ?"
+    options:
+      - { texte: "1 bit", exacte: true }
+      - { texte: "8 bits" }
+      - { texte: "16 bits" }
+      - { texte: "32 bits" }
+    justification: "D'après CM2.pdf p. 69 : pour un protocole « send and wait », un bit suffit pour coder le numéro de séquence (0 ou 1), et il est placé uniquement dans le paquet de données."
+    chapitre: Transfert fiable (rdt)
+    niveau: 2
+    tags: [rdt2.1, numero-sequence]
+
+  - id: CM2-02
+    type: qcm
+    enonce: "Quel mécanisme rdt3.0 ajoute-t-il par rapport à rdt2.1 pour gérer un canal avec pertes de paquets ?"
+    options:
+      - { texte: "Un temporisateur (timer) : si le délai expire avant l'ACK, l'émetteur retransmet", exacte: true }
+      - { texte: "Un champ adresse MAC dans chaque paquet" }
+      - { texte: "Une compression des en-têtes" }
+      - { texte: "Un chiffrement des données" }
+    justification: "D'après CM2.pdf p. 74 : face à un canal avec erreurs et pertes, rdt3.0 ajoute un temporisateur ; en cas de timeout, l'émetteur retransmet (les duplicatas éventuels sont gérés par le n° de séquence)."
+    chapitre: Transfert fiable (rdt)
+    niveau: 2
+    tags: [rdt3.0, timer, timeout]
+
+  - id: CM2-03
+    type: qcm_multiple
+    enonce: "Quelles sont les « pièces maîtresses » d'un protocole de transfert de données fiable (rdt) ? (plusieurs réponses)"
+    options:
+      - { texte: "La somme de contrôle (détecter les erreurs)", exacte: true }
+      - { texte: "Les accusés de réception ACK/NAK (boucle de contrôle)", exacte: true }
+      - { texte: "Le numéro de séquence (détecter duplicatas et ACK erronés)", exacte: true }
+      - { texte: "Le temporisateur (gérer les pertes)", exacte: true }
+    justification: "D'après CM2.pdf p. 78 : les 4 mécanismes sont la somme de contrôle, les ACK/NAK, le n° de séquence et le timer."
+    chapitre: Transfert fiable (rdt)
+    niveau: 1
+    tags: [rdt, synthese]
+
+  - id: CM2-04
+    type: qcm
+    enonce: "Sur un lien de 1 Gb/s avec un délai de propagation de 15 ms et des paquets de 1 Ko, rdt3.0 (« send and wait ») atteint un débit utile d'environ :"
+    options:
+      - { texte: "270 kb/s (utilisation U ≈ 2,7 × 10⁻⁴ du lien)", exacte: true }
+      - { texte: "1 Gb/s" }
+      - { texte: "500 Mb/s" }
+      - { texte: "15 Mb/s" }
+    justification: "D'après CM2.pdf p. 79 : témission = 8L/C = 8 µs, U = témission/(témission + 2×dpropag) ≈ 2,7 × 10⁻⁴, soit Dutile = U × C ≈ 270 kb/s — très loin des 1 Gb/s du lien."
+    chapitre: Transfert fiable (rdt)
+    niveau: 3
+    tags: [rdt3.0, performances, calcul]
+
+  - id: CM2-05
+    type: qcm
+    enonce: "Dans un protocole à anticipation (pipeline), la « fenêtre d'anticipation » désigne :"
+    options:
+      - { texte: "le nombre de paquets que l'émetteur peut transmettre à la suite sans attendre d'ACK", exacte: true }
+      - { texte: "la taille maximale d'un paquet" }
+      - { texte: "le délai de propagation maximal autorisé" }
+      - { texte: "le nombre de buffers du récepteur" }
+    justification: "D'après CM2.pdf p. 80 : dans un protocole pipeliné, l'expéditeur peut transmettre plusieurs paquets à la suite sans attendre les accusés de réception ; ce nombre de paquets est la fenêtre d'anticipation."
+    chapitre: Transfert fiable (rdt)
+    niveau: 2
+    tags: [pipeline, fenetre]
+
+  - id: CM2-06
+    type: qcm
+    enonce: "Quelle différence majeure y a-t-il entre Selective Repeat et Go-Back-N côté récepteur ?"
+    options:
+      - { texte: "Selective Repeat maintient un buffer de reséquencement ; Go-Back-N accepte uniquement les paquets bien séquencés", exacte: true }
+      - { texte: "Go-Back-N maintient un buffer, Selective Repeat non" }
+      - { texte: "Aucune différence, ce sont deux noms pour le même protocole" }
+      - { texte: "Selective Repeat est un protocole de routage" }
+    justification: "D'après CM2.pdf p. 83 : Selective Repeat (« rejet sélectif ») maintient un buffer par connexion pour attendre les segments dans l'ordre ; Go-Back-N (« rejet simple ») n'a pas de buffer et n'accepte que les paquets bien séquencés."
+    chapitre: Transfert fiable (rdt)
+    niveau: 2
+    tags: [selective-repeat, go-back-n]
+
+  - id: CM2-07
+    type: qcm_multiple
+    enonce: "Comment un terminal TCP détecte-t-il une congestion sans assistance du réseau ? (plusieurs réponses)"
+    options:
+      - { texte: "Par un timeout (expiration du temporisateur)", exacte: true }
+      - { texte: "Par la réception de 3 ACK identiques (ACK dupliqués)", exacte: true }
+      - { texte: "Par un message explicite envoyé par les routeurs" }
+      - { texte: "En mesurant directement le débit du lien" }
+    justification: "D'après CM2.pdf p. 86 : la détection se fait uniquement depuis les terminaux, via la perte de paquets détectée par un timeout ou par 3 ACK identiques. Hypothèse : une congestion provoque des pertes (l'inverse est faux)."
+    chapitre: Congestion et TCP
+    niveau: 2
+    tags: [congestion, detection]
+
+  - id: CM2-08
+    type: qcm
+    enonce: "Le principe AIMD (« Additive Increase Multiplicative Decrease ») de TCP consiste à :"
+    options:
+      - { texte: "augmenter la fenêtre d'anticipation de 1 segment après chaque ACK, et la diviser par 2 lors d'une perte", exacte: true }
+      - { texte: "diviser la fenêtre par 2 à chaque ACK et la doubler lors d'une perte" }
+      - { texte: "fixer définitivement la fenêtre à sa valeur initiale" }
+      - { texte: "augmenter le débit de 1 segment par seconde" }
+    justification: "D'après CM2.pdf p. 89 : hausse additive (+1 segment par ACK reçu) jusqu'à détecter une perte, puis baisse multiplicative (fenêtre divisée par 2) — d'où l'évolution en dents de scie de la fenêtre de congestion."
+    chapitre: Congestion et TCP
+    niveau: 2
+    tags: [tcp, aimd, congestion]
+
+  - id: CM2-09
+    type: qcm_multiple
+    enonce: "Quelles caractéristiques décrivent TCP ? (plusieurs réponses)"
+    options:
+      - { texte: "Orienté connexion (handshaking initial)", exacte: true }
+      - { texte: "Mode duplex", exacte: true }
+      - { texte: "Point-à-point (un expéditeur, un destinataire)", exacte: true }
+      - { texte: "Sans connexion, comme UDP" }
+    justification: "D'après CM2.pdf p. 90 : TCP est orienté connexion (handshaking), duplex, point-à-point, avec livraison fiable et séquencée (MSS), pipeliné (fenêtre dynamique) et contrôle de flux."
+    chapitre: Congestion et TCP
+    niveau: 1
+    tags: [tcp, caracteristiques]
+
+  - id: CM2-10
+    type: qcm_multiple
+    enonce: "Quels sont les trois services essentiels de la couche Réseau ? (plusieurs réponses)"
+    options:
+      - { texte: "L'adressage", exacte: true }
+      - { texte: "L'acheminement (forwarding)", exacte: true }
+      - { texte: "Le routage", exacte: true }
+      - { texte: "Le contrôle de flux" }
+    justification: "D'après CM2.pdf p. 95 : adressage (identifiant topologique d'un nœud), acheminement/forwarding (commuter un paquet d'une interface à une autre via la table de routage) et routage (déterminer le chemin de bout-en-bout)."
+    chapitre: Couche réseau
+    niveau: 1
+    tags: [couche-reseau, routage]
+
+  - id: CM2-11
+    type: qcm
+    enonce: "Dans un datagramme IPv4, que se passe-t-il lorsque le champ TTL atteint 0 ?"
+    options:
+      - { texte: "Le paquet est supprimé (évite qu'il ne tourne indéfiniment, ex. boucle de routage)", exacte: true }
+      - { texte: "Le paquet est renvoyé à la source" }
+      - { texte: "Le paquet est retransmis automatiquement" }
+      - { texte: "Rien, le TTL est remis à sa valeur initiale" }
+    justification: "D'après CM2.pdf p. 97 : le TTL est décrémenté de 1 à chaque saut ; s'il atteint 0, le paquet est supprimé, ce qui évite qu'un paquet ne tourne indéfiniment dans le réseau (boucle de routage)."
+    chapitre: Couche réseau
+    niveau: 1
+    tags: [ipv4, ttl]
+
+  - id: CM2-12
+    type: qcm
+    enonce: "Dans l'en-tête IPv4, quelles valeurs du champ « Protocol » identifient TCP et UDP ?"
+    options:
+      - { texte: "06 = TCP, 17 = UDP", exacte: true }
+      - { texte: "17 = TCP, 06 = UDP" }
+      - { texte: "01 = TCP, 02 = UDP" }
+      - { texte: "80 = TCP, 53 = UDP" }
+    justification: "D'après CM2.pdf p. 97 : le champ Protocol identifie le protocole encapsulé dans IP : 06 pour TCP, 17 pour UDP."
+    chapitre: Couche réseau
+    niveau: 1
+    tags: [ipv4, protocol]
+
+  - id: CM2-13
+    type: qcm
+    enonce: "Sur combien de bits est codée une adresse IPv4 ? Et une adresse IPv6 ?"
+    options:
+      - { texte: "IPv4 : 32 bits ; IPv6 : 128 bits", exacte: true }
+      - { texte: "IPv4 : 64 bits ; IPv6 : 128 bits" }
+      - { texte: "IPv4 : 32 bits ; IPv6 : 64 bits" }
+      - { texte: "IPv4 : 16 bits ; IPv6 : 128 bits" }
+    justification: "D'après CM2.pdf p. 99 et p. 102 : une adresse IPv4 est codée sur 32 bits ; IPv6, conçu face à la pénurie d'adresses IPv4, utilise 128 bits."
+    chapitre: Couche réseau
+    niveau: 1
+    tags: [ipv4, ipv6, adressage]
+
+  - id: CM2-14
+    type: vrai_faux
+    reponse: true
+    enonce: "Dans un datagramme IPv6, le champ checksum de l'en-tête a disparu : d'autres couches s'en chargent."
+    justification: "D'après CM2.pdf p. 102 : le champ checksum disparaît dans IPv6, laissé aux autres couches pour plus d'efficacité."
+    chapitre: Couche réseau
+    niveau: 2
+    tags: [ipv6]
+
+  - id: CM2-15
+    type: qcm
+    enonce: "Dans une table d'acheminement, la route par défaut (toutes les adresses possibles) est notée :"
+    options:
+      - { texte: "0.0.0.0/0", exacte: true }
+      - { texte: "255.255.255.255/32" }
+      - { texte: "127.0.0.1/8" }
+      - { texte: "192.168.0.0/24" }
+    justification: "D'après CM2.pdf p. 104 : 0.0.0.0/0 désigne toutes les adresses possibles — c'est la route par défaut."
+    chapitre: Couche réseau
+    niveau: 1
+    tags: [table-acheminement, route-defaut]
+
+  - id: CM2-16
+    type: qcm
+    enonce: "Si une adresse IP destination correspond à plusieurs entrées d'une table d'acheminement, le routeur choisit :"
+    options:
+      - { texte: "l'entrée la plus spécifique (algorithme du plus long préfixe partagé)", exacte: true }
+      - { texte: "la première entrée de la table" }
+      - { texte: "une entrée au hasard" }
+      - { texte: "l'entrée la plus récente" }
+    justification: "D'après CM2.pdf p. 107 : on choisit la plus spécifique, c'est-à-dire l'algorithme du Plus Long Préfixe Partagé (ex. 192.168.0.7 matche /28, /24, /22 et /0 → on prend /28)."
+    chapitre: Couche réseau
+    niveau: 2
+    tags: [table-acheminement, plus-long-prefixe]
+
+  - id: CM2-17
+    type: qcm
+    enonce: "Dans un routage par état de liens, chaque nœud applique quel algorithme pour construire sa table d'acheminement ?"
+    options:
+      - { texte: "L'algorithme de Dijkstra (1959), sur la topologie complète du réseau", exacte: true }
+      - { texte: "L'équation de Bellman-Ford uniquement sur ses voisins" }
+      - { texte: "Un tirage au sort pondéré par les capacités des liens" }
+      - { texte: "L'algorithme A*" }
+    justification: "D'après CM2.pdf p. 115 : chaque nœud connaît la topologie complète (diffusion de l'état des liens) et applique Dijkstra, qui retourne un arbre des plus courts chemins."
+    chapitre: Routage
+    niveau: 2
+    tags: [etat-de-liens, dijkstra]
+
+  - id: CM2-18
+    type: qcm
+    enonce: "L'équation de Bellman-Ford utilisée en routage par vecteur de distances s'écrit :"
+    options:
+      - { texte: "dX(Y) = min over Vi in Vx de ( c(X,Vi) + dVi(Y) )", exacte: true }
+      - { texte: "dX(Y) = c(X,Y) uniquement" }
+      - { texte: "dX(Y) = max over Vi de ( c(X,Vi) + dVi(Y) )" }
+      - { texte: "dX(Y) = c(X,Vi) × dVi(Y)" }
+    justification: "D'après CM2.pdf p. 116 : dX(Y) = min_{Vi ∈ Vx} (c(X,Vi) + dVi(Y)), où Vx est l'ensemble des voisins de X ; le nœud itère vers un point fixe en échangeant ses vecteurs de distances."
+    chapitre: Routage
+    niveau: 3
+    tags: [vecteur-de-distances, bellman-ford]
+
+  - id: CM2-19
+    type: qcm
+    enonce: "Parmi les protocoles de routage intra-AS, lesquels sont de type « état de liens » et lesquels de type « vecteur de distances » ?"
+    options:
+      - { texte: "OSPF : état de liens ; RIP et IGRP : vecteur de distances", exacte: true }
+      - { texte: "OSPF : vecteur de distances ; RIP : état de liens" }
+      - { texte: "Tous sont de type état de liens" }
+      - { texte: "Tous sont de type vecteur de distances" }
+    justification: "D'après CM2.pdf p. 121 : RIP (vecteur de distances), OSPF (état de liens), IGRP (vecteur de distances, propriétaire Cisco)."
+    chapitre: Routage
+    niveau: 1
+    tags: [intra-as, rip, ospf, igrp]
+
+  - id: CM2-20
+    type: qcm
+    enonce: "Quel protocole assure le routage inter-AS sur Internet, et quelles sont ses deux variantes ?"
+    options:
+      - { texte: "BGP, avec eBGP (entre AS) et iBGP (propagation interne à l'AS)", exacte: true }
+      - { texte: "OSPF, avec eOSPF et iOSPF" }
+      - { texte: "RIP, avec eRIP et iRIP" }
+      - { texte: "ICMP, avec echo request et echo reply" }
+    justification: "D'après CM2.pdf p. 123 : BGP est le protocole de routage inter-AS de l'Internet ; eBGP obtient les infos d'accessibilité des autres AS, iBGP les propage aux routeurs internes."
+    chapitre: Routage
+    niveau: 2
+    tags: [inter-as, bgp]
+
+  - id: CM2-21
+    type: qcm
+    enonce: "Où le « plus court chemin » est-il garanti dans le routage hiérarchique d'Internet ?"
+    options:
+      - { texte: "Uniquement en intra-AS (vers la passerelle choisie) ; en inter-AS, pas toujours", exacte: true }
+      - { texte: "En inter-AS uniquement" }
+      - { texte: "Jamais, nulle part" }
+      - { texte: "Partout, intra-AS comme inter-AS" }
+    justification: "D'après CM2.pdf p. 125 : le routage intra-AS choisit la route vers la passerelle selon le plus court chemin ; le routage inter-AS choisit le prochain AS (la passerelle), donc pas toujours le plus court chemin."
+    chapitre: Routage
+    niveau: 2
+    tags: [hierarchique, plus-court-chemin]
+
+  - id: CM2-22
+    type: qcm
+    enonce: "En 2025, environ combien d'AS (Autonomous Systems) fédèrent-ils Internet ?"
+    options:
+      - { texte: "environ 120 000", exacte: true }
+      - { texte: "environ 1 200" }
+      - { texte: "environ 12 millions" }
+      - { texte: "environ 65 000" }
+    justification: "D'après CM2.pdf p. 119 : Internet est une fédération d'environ 120 000 AS en 2025, chaque administrateur d'AS étant maître de son réseau et de son routage."
+    chapitre: Routage
+    niveau: 1
+    tags: [as, internet]
