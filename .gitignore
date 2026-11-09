@@ -1,0 +1,10 @@
+# Non nécessaire pour l'hébergement GitHub Pages :
+# - .idea/ : config IDE IntelliJ
+# - .vibe/ : skill local (disponible aussi dans ~/.vibe/skills/)
+# - qcm/   : QCM générés locaux (les utilisateurs apportent leur propre YAML)
+# - exemples/ et js/exemple.js : QCM d'exemple embarqué
+.idea/
+.vibe/
+qcm/
+exemples/
+js/exemple.js

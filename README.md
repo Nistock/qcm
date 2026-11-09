@@ -21,7 +21,8 @@ Le dossier `qcm/` contient les QCM générés (un YAML par cours). Sur la page d
   **Déposer un QCM** écrit un nouveau fichier YAML (validé avant écriture) dans ce dossier.
 - **Sans navigateur compatible** (ou site servi en HTTP) : la page lit le manifeste
   `qcm/index.json` et liste les QCM disponibles en lecture seule.
-- Régénérer le manifeste après ajout manuel de fichiers : `node qcm/maj-index.js`.
+- Régénérer le manifeste après ajout manuel de fichiers : `node qcm/maj-index.js`
+  (le skill `qcm-depuis-pdf` le fait automatiquement après chaque génération).
 
 ## Format du fichier QCM (v1)
 
@@ -68,16 +69,33 @@ au site via le bouton « Charger l'exemple »).
 ```
 ├── index.html            # page unique
 ├── css/style.css
-├── js/app.js             # moteur du quiz
+├── js/app.js             # moteur du quiz + dossier de QCM (liste/dépôt)
 ├── js/validation.js      # validation/normalisation du format (testable sous Node)
 ├── js/exemple.js         # exemple embarqué (généré depuis exemples/exemple.yaml)
 ├── exemples/exemple.yaml # QCM d'exemple
 ├── qcm/                  # dossier des QCM générés (listé sur la page d'accueil)
+│   ├── qcm.m1.reseaux.1.yaml  # ex. : QCM généré depuis CM1.pdf + CM2.pdf (M1IF05)
 │   ├── index.json        # manifeste (régénéré par maj-index.js)
 │   └── maj-index.js      # node qcm/maj-index.js
-└── vendor/js-yaml.min.js # parser YAML embarqué (fonctionne hors-ligne)
+├── vendor/js-yaml.min.js # parser YAML embarqué (fonctionne hors-ligne)
+└── .vibe/skills/qcm-depuis-pdf/   # skill de génération PDF -> YAML (aussi installé
+    ├── SKILL.md                   # dans ~/.vibe/skills/qcm-depuis-pdf)
+    ├── validate.js
+    └── references/format-qcm.md
 ```
 
-## Prochaine étape prévue
+## Skill Vibe : `qcm-depuis-pdf`
 
-Un skill Vibe qui, à partir d'un cours en PDF, génère le fichier YAML décrit ci-dessus.
+Génère un QCM YAML (format v1 ci-dessus) à partir d'un ou plusieurs cours PDF :
+
+```
+/qcm-depuis-pdf CM1.pdf CM2.pdf [--pages N-M] [--sortie <fichier.yaml>]
+```
+
+- Extraction du texte par `pdftotext -layout`, un seul YAML fusionné en sortie, écrit
+  par défaut dans `qcm/` (le manifeste `index.json` est régénéré automatiquement).
+- Types générés : `qcm`, `qcm_multiple`, `vrai_faux` ; justifications avec citation
+  `fichier.pdf p. N` ; passages ambigus tagués `a-verifier`. Jamais de contenu inventé.
+- Validation automatique du YAML via `validate.js` avant confirmation.
+- Installé en double : `.vibe/skills/qcm-depuis-pdf/` (ce projet) et
+  `~/.vibe/skills/qcm-depuis-pdf/` (global). `/reload` dans une session en cours.

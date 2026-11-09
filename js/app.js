@@ -572,9 +572,15 @@
   dropzone.addEventListener('drop', function (e) {
     if (e.dataTransfer.files.length) lireFichier(e.dataTransfer.files[0]);
   });
-  document.getElementById('btn-exemple').addEventListener('click', function () {
-    importerYaml(window.EXEMPLE_YAML, 'exemple intégré');
-  });
+  var btnExemple = document.getElementById('btn-exemple');
+  if (!window.EXEMPLE_YAML) {
+    // js/exemple.js non déployé (hébergement Pages) : on masque le bouton
+    btnExemple.parentNode.hidden = true;
+  } else {
+    btnExemple.addEventListener('click', function () {
+      importerYaml(window.EXEMPLE_YAML, 'exemple intégré');
+    });
+  }
 
   function lireFichier(f) {
     var reader = new FileReader();
